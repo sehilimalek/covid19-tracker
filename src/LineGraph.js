@@ -7,14 +7,14 @@ const LineGraph = ({ casesType, ...props }) => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const fectchData = async () => {
+    const fetchData = async () => {
       await api.get("historical/all?lastdays=120").then((res) => {
         const data = res.data;
         const chartData = buildChartData(data);
         setData(chartData);
       });
     };
-    fectchData();
+    fetchData();
   }, [casesType]);
 
   return (

@@ -28,7 +28,7 @@ const App = () => {
 
   useEffect(() => {
     api.get("all").then((res) => {
-      const data = res.data;
+      const { data } = res;
       setCountryInfo(data);
     });
   }, []);
@@ -41,7 +41,7 @@ const App = () => {
       countryCode === "worldwide" ? "all" : `countries/${countryCode}`;
 
     await api.get(url).then((res) => {
-      const data = res.data;
+      const { data } = res;
       setCountryInfo(data);
       if (countryCode === "worldwide") {
         setMapCenter({ lat: 32.80746, lng: 10.4796 });
@@ -56,7 +56,7 @@ const App = () => {
   useEffect(() => {
     const getCountries = async () => {
       await api.get("countries").then((res) => {
-        const data = res.data;
+        const { data } = res;
         const countries = data.map((country) => ({
           name: country.country,
           value: country.countryInfo.iso2,
